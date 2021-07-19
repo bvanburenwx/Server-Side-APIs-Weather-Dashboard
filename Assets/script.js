@@ -2,8 +2,10 @@ init()
 const currentDate = moment();
 var citySearch = $("#city");
 var searchBtn = $("#search-btn");
-var cityName = $("#chosen-city");
+var city = $("#chosen-city");
 var cityInfo = [];
+
+var cityInput = $(".form-input").val();
 
 
 for (var i = 0; i<localStorage.length; i++) {
@@ -26,6 +28,7 @@ function fetchGPS(cityInput) {
             var lon = data[0].lon;
 
             fetchWeather(lat, lon);
+            console.log(data)
         })
 }
 function fetchWeather(lat, lon) {
@@ -37,11 +40,29 @@ function fetchWeather(lat, lon) {
             // Get weather icon
             console.log(data);
 
-            cityName.textcontent = '${city} (${moment().format("M/D/YYYY")})';
-
             getForecast(data);
-            fiveday(data);
-        })
-}
 
-searchBtn.click(fetchGPS);
+            function getForecast() {
+                var currentForecast = $("#currentForecast").append("<div>").addClass("forecast-body")
+                currentForecast.empty();
+                var cityName = currentForecast.append("<p>");
+            
+                currentForecast.append(cityName);
+            
+                var currentTemp = cityName.append("<p>")
+
+                cityName.append(currentTemp);
+            
+                currentTemp.append("<p>" + "Temperature: "  + data.current.temp + "</p>");
+
+                currentTemp.append("<p>" + "Humidity: "  + data.current.humidity + "</p>");
+
+                currentTemp.append("<p>" + "Wind-Speed: "  + data.current.wind_speed + "</p>");
+
+                currentTemp.append("<p>" + "UV Index: "  + data.current.uvi + "</p>");
+
+            };
+        });
+    };
+
+    console.log(fetchGPS);
