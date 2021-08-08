@@ -5,3 +5,15 @@ h1 {
 #currentForecast {
    color: blue;
 }
+
+.favorable {
+   color: green;
+}
+
+.moderate {
+   color: orange;
+}
+
+.severe {
+   color: red;
+}
