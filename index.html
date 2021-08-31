@@ -14,41 +14,48 @@
     <title>Weather Dashboard</title>
   </head>
   <body>
-      <header class="jumbotron jumbotron-fluid">
-        <h1>Weather Dashboard</h1>
-      </header>
-      <main class="container">
-        <div class="row">
-          <div class="container">
-            <div class="row"></div>
-            <div class="col"></div>
-            <h4>Search for a City</h4>
-            <input
-              id="searchCity"
-              type="text"
-              class="form-input"
-              placeholder="Enter Name of City"
-            />
-            <button class="search-btn" type="submit">Search</button>
-            <div class="past-search border" id="past-search-buttons"></div>
-          </div>
-          <div class="col-12 col-md-9">
-            <div class="row border city" id="currentForecast">
-              <div class="col-12">
-                <h2 id="chosen-city">Current Forecast</h2>
-                <div id="present-weather-container" class="list-group"></div>
-              </div>
-            </div>
-            <div class="row border" id="futureCast">
-              <h2 class="col-12" id="forecast">5 Day Forecast</h2>
-              <div class="d-flex" id="futurecast-container"></div>
+    <header class="jumbotron jumbotron-fluid">
+      <h1>Weather Dashboard</h1>
+    </header>
+    <main class="container">
+      <div class="row">
+        <div id="content-left" class="col-md-3">
+          <h4>Search for a City</h4>
+          <input
+            id="searchCity"
+            type="text"
+            class="form-input"
+            placeholder="Enter Name of City"
+          />
+          <button class="search-btn" type="submit">Search</button>
+          <div class="past-search border" id="past-search-buttons"></div>
+        </div>
+        <div id="content-right" class="col-md-9 pt-4">
+          <div class="card" style="width: auto">
+            <div class="card-body">
+              <h4 class="card-title" id="current-weather"></h4>
+              <img id="current-weather-icon" />
+              <p class="card-text">
+                Temperature: <span class="card-text" id="currentTemp"></span>
+              </p>
+              <p class="card-text">
+                Humidity: <span class="card-text" id="currentHumidity"></span>
+              </p>
+              <p class="card-text">
+                Wind Speed:
+                <span class="card-text" id="currentWindSpeed"></span>
+              </p>
+              <p class="card-text">
+                UV Index <span class="card-text" id="currentUvIndex"></span>
+              </p>
             </div>
           </div>
         </div>
-      </main>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-      <script src="Assets/script.js"></script>
+      </div>
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="Assets/script.js"></script>
   </body>
 </html>

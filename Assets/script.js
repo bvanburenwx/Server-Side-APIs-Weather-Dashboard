@@ -3,6 +3,12 @@ const currentDate = moment();
 var citySearch = $("#city");
 var searchBtn = $(".search-btn");
 var city = $("#chosen-city");
+var currentWeatherTitle = $("#current-weather");
+var currentWeatherIcon = $("#current-weather-icon");
+var currentTemperatureEl = $("#currentTemp");
+var currentHumidityEl = $("#currentHumidity");
+var currentWindSpeedEl = $("#currentWindSpeed");
+var currentUvIndexEl = $("#currentUvIndex");
 var cityInfo = [];
 
 
@@ -24,6 +30,8 @@ searchBtn.on("click", function(){
     var cityInput = $(".form-input").val();
     console.log("button click ", cityInput)
     fetchGPS(cityInput);
+   
+
 });
 
 function fetchGPS(cityInput) {
@@ -54,36 +62,44 @@ function fetchWeather(lat, lon, userCity) {
             // Get weather icon
             console.log(data);
 
-            getForecast(data);
+            var currentWeather = {
+                weatherIcon: "http://openweathermap.org/img/wn/" + data.current.weather[0].icon + "@2x.png",
+                temp: data.current.temp + "F",
+                windSpeed: data.current.wind_speed + " MPH",
+                humidity: data.current.humidity + "%",
+                UVI: data.current.uvi,
+            };
 
-            function getForecast() {
-                var currentForecast = $("#currentForecast").append("<div>").addClass("forecast-body")
-                currentForecast.empty();
-                var uvData = data.current.uvi
-                var cityName = currentForecast.append("<p>");
-                console.log("USER CITY IN GET FORECAST", userCity)
-                cityName.text(userCity);
-                console.log(cityName);
-                currentForecast.append(cityName);
-            
-                var currentTemp = cityName.append("<p>")
+            var fiveDayForecast = [];
 
-                cityName.append(currentTemp);
-            
-                currentTemp.append("<p>" + "Temperature: "  + data.current.temp + "</p>");
+            for(var i = 0; i < 5; i++) {
+                fiveDayForecast.push(
+                    {
+                        weatherIcon: "https://openweathermap.org/img/wn/" + data.daily[i].weather[0].icon + "@2x.png",
+                        temp: data.daily[i].temp.max + " F",
+                        windSpeed: data.daily[i].wind_speed + " MPH",
+                        humidity: data.daily[i]. humidity + "%",
+                    }
+                );
+                console.log(currentWeather);
+            }
 
-                currentTemp.append("<p>" + "Humidity: "  + data.current.humidity + "</p>");
+            showForecast(currentWeather);
 
-                currentTemp.append("<p>" + "Wind-Speed: "  + data.current.wind_speed + "</p>");
+            function showForecast(currentWeather) {
+                currentWeatherTitle.text(userCity + " (" + currentDate.format("M/D/YYYY") + ")");
+                currentWeatherIcon.attr("src", currentWeather.weatherIcon);
+                currentTemperatureEl.text(currentWeather.temp);
+                currentHumidityEl.text(currentWeather.humidity);
+                currentWindSpeedEl.text(currentWeather.windSpeed);
+                currentUvIndexEl.text(currentWeather.UVI);
 
-                currentTemp.append("<p>" + "UV Index: "  + uvData + "</p>").addClass("uvIndex");
-
-                if (uvData < 4) {
-                    $(".uvIndex").addClass("favorable")
-                } else if (uvData > 4 || uvData < 9) {
-                    $(".uvIndex").addClass("moderate")
+                if (currentWeather.UVI < 4) {
+                    currentUvIndexEl.attr("class", "favorable")
+                } else if (currentWeather.UVI > 4 || UVI < 9) {
+                    currentUvIndexEl.attr("class", "moderate")
                 } else {
-                    $(".uvIndex").addClass("severe")
+                    currentUvIndexEl.attr("class", "severe")
                 }
 
             };
@@ -91,3 +107,5 @@ function fetchWeather(lat, lon, userCity) {
     };
 
     console.log(fetchGPS);
+    console.log(fetchWeather);
+    
