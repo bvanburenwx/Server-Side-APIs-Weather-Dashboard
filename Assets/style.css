@@ -1,19 +1,59 @@
 h1 {
-   text-align: center;
+  text-align: center;
+  font-family: "Luckiest Guy", cursive;
+  color: white;
 }
 
-#currentForecast {
-   color: blue;
+h2 {
+  color: white;
+}
+
+body {
+  background-image: url(images/cloud-photo3.jpeg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.header {
+  background-color: blue;
+}
+
+.card-body {
+  background-image: linear-gradient(
+    to bottom,
+    #4668a4,
+    #5d6da6,
+    #7073a8,
+    #8079aa,
+    #8e80ac,
+    #9c84ac,
+    #a889ab,
+    #b38fab,
+    #be95a8,
+    #c69ca6,
+    #cca4a5,
+    #cfada7
+  );
+  color: white;
+}
+
+.card {
+  border-radius: 25px;
+}
+
+.cityButton {
+  margin: 5px;
 }
 
 .favorable {
-   color: green;
+  background-color: green;
 }
 
 .moderate {
-   color: orange;
+  background-color: orange;
 }
 
 .severe {
-   color: red;
+  background-color: red;
 }

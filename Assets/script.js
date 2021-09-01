@@ -1,8 +1,6 @@
 $(document).ready(function () {
   const currentDate = moment();
-  var citySearch = $("#city");
   var searchBtn = $(".search-btn");
-  var city = $("#chosen-city");
   var currentWeatherTitle = $("#current-weather");
   var currentWeatherIcon = $("#current-weather-icon");
   var currentTemperatureEl = $("#currentTemp");
@@ -21,12 +19,12 @@ $(document).ready(function () {
   });
 
   var cityClick;
-  $(document).on("click", ".cityButton",function(e) { 
+  $(document).on("click", ".cityButton", function (e) {
     e.preventDefault();
 
-    console.log("CLicked city button!!!!")
-    cityClick = $(this).attr("data-name")
-    console.log("CITY CLICK IN CITY BUTTON", cityClick)
+    console.log("CLicked city button!!!!");
+    cityClick = $(this).attr("data-name");
+    console.log("CITY CLICK IN CITY BUTTON", cityClick);
     fetchGPS(cityClick);
   });
 
@@ -172,7 +170,7 @@ $(document).ready(function () {
     for (let i = 0; i < cityHistory.length; i++) {
       var cityName = cityHistory[i];
 
-      newButton = $("<button class='btn cityButton'>");
+      newButton = $("<button class='btn btn-secondary .btn-lg cityButton'>");
       newButton.attr("data-name", cityName);
       newButton.text(cityName);
 
